@@ -15,11 +15,12 @@ class CreateChargesTable extends Migration
     {
         Schema::create('charges', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('description');
-            $table->integer('amount');
-            $table->string('currency');
-            $table->string('pricing_type');
+            $table->string('email');
+            $table->integer('currencies_id_from');
+            $table->integer('currencies_id_to');
+            $table->double('give');
+            $table->double('take');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

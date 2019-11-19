@@ -8,16 +8,14 @@ use App\Interfaces\ChargeInterface;
 
 class ChargesController extends Controller
 {
-    public function create(ChargeInterface $chargeInterface)
+    public function create(ChargeInterface $chargeInterface, Request $request)
     {
     	$chargeInterface->create([
-		    'name' => 'Name',
-		    'description' => 'Description',
-		    'local_price' => [
-		        'amount' => 100,
-		        'currency' => 'USD',
-		    ],
-		    'pricing_type' => 'fixed_price',
+		    'email' => $request->email,
+		    'currencies_id_from' => $request->walletFrom,
+		    'currencies_id_to' => $request->walletTo,
+		    'give' => $request->give,
+		    'take' => $request->take
 		]);
     }
 }
