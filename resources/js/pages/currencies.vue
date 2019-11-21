@@ -17,14 +17,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(currency, index) in currencies">
-                    <th scope="row">{{ index }}</th>
+                  <tr v-for="(currency, index, key) in currencies">
+                    <th scope="row">{{ key + 1 }}</th>
                     <td>
-                      <img :src="currency.logo" :alt="currency.name" width="30" height="30">
-                      <span class="currency-name">{{ currency.name }}</span>
-                      <span class="small">{{ currency.currency }}</span>
+                      <span>{{ currency.base }}</span>
                     </td>
-                    <td>{{ currency.rate.amount }} UAH</td>
+                    <td>{{ currency.amount }} {{ currency.currency }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -57,10 +55,5 @@ export default {
 <style scoped>
 .title {
   font-size: 60px;
-}
-
-.currency-name {
-  font-size: 21px;
-  margin-left: 1rem;
 }
 </style>

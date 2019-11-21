@@ -12,3 +12,7 @@ export const SET_LOCALE = 'SET_LOCALE'
 // currencies.js
 export const FETCH_CURRENCIES = 'FETCH_CURRENCIES'
 export const FETCH_CURRENCIES_ALL = 'FETCH_CURRENCIES_ALL'
+export const SYSTEM_DELETE = 'SYSTEM_DELETE'
+
+// loading.js
+export const LOADING_TOGGLE = 'LOADING_TOGGLE'

@@ -16,6 +16,6 @@ class ChargesController extends Controller
 		    'currencies_id_to' => $request->walletTo,
 		    'give' => $request->give,
 		    'take' => $request->take
-		]);
+		]); 
     }
 }

@@ -12,8 +12,12 @@ export default [
   { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
   { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 
-  { path: '/orders', name: 'orders', component: page('orders') },
-  { path: '/currencies', name: 'currencies', component: page('currencies') },
+  { path: '/orders', name: 'orders', component: page('orders.vue') },
+  { path: '/currencies', name: 'currencies', component: page('currencies.vue') },
+  
+  { path: '/systems', name: 'systems', component: page('systems/index.vue') },
+  { path: '/systems/create', name: 'systems.create', component: page('systems/create.vue') },
+  { path: '/systems/edit/:id', name: 'systems.edit', component: page('systems/edit.vue') },
 
   { path: '/settings',
     component: page('settings/index.vue'),

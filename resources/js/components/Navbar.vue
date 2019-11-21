@@ -20,6 +20,11 @@
         <ul class="navbar-nav ml-auto">
           <!-- Authenticated -->
           <li class="nav-item">
+            <router-link :to="{ name: 'systems' }" class="nav-link" active-class="active">
+              Systems
+            </router-link>
+          </li>
+          <li class="nav-item">
             <router-link :to="{ name: 'currencies' }" class="nav-link" active-class="active">
               All currencies
             </router-link>
