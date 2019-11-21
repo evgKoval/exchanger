@@ -39,9 +39,9 @@ Route::group(['middleware' => 'guest:api'], function () {
 });
 
 Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
-    Route::resource('currencies', 'CurrenciesController', ['except' => ['create', 'edit']]);
+    Route::resource('currencies', 'CurrenciesController');
 
-    Route::get('currencies-all', 'CurrenciesRatesController@currenciesAll');
+    Route::resource('currencies-all', 'CurrenciesRatesController');
 
     Route::post('charge-create', 'ChargesController@create');
 });

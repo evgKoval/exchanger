@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Currency;
+use App\Interfaces\CurrencyRepository;
+use App\Http\Requests\StoreCurrency;
 
 class CurrenciesController extends Controller
 {
@@ -13,9 +14,9 @@ class CurrenciesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CurrencyRepository $currencyRepository)
     {
-        return Currency::all();
+        return $currencyRepository->index();
     }
 
     /**
@@ -34,9 +35,16 @@ class CurrenciesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CurrencyRepository $currencyRepository, StoreCurrency $request)
     {
-        //
+        $request->validated();
+
+        $currencyRepository->store([
+            'name' => $request->name,
+            'currency' => $request->currency,
+            'logo' => $request->logo,
+            'reserves' => $request->reserves
+        ]);
     }
 
     /**
@@ -45,9 +53,9 @@ class CurrenciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CurrencyRepository $currencyRepository, $id)
     {
-        //
+        return $currencyRepository->show($id);
     }
 
     /**
@@ -68,9 +76,14 @@ class CurrenciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CurrencyRepository $currencyRepository, Request $request, $id)
     {
-        //
+        $currencyRepository->update([
+            'name' => $request->name,
+            'currency' => $request->currency,
+            'logo' => $request->logo,
+            'reserves' => $request->reserves
+        ], $id);
     }
 
     /**
@@ -79,8 +92,8 @@ class CurrenciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CurrencyRepository $currencyRepository, $id)
     {
-        //
+        $currencyRepository->destroy($id);
     }
 }

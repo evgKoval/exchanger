@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div v-if="loading" class="text-center">
-      <div class="spinner-border" role="status">
-        <span class="sr-only"></span>
-      </div>
-    </div>
-    <div v-else>
+    <div>
       <div class="title mb-4 text-center">
         Exchange your money
       </div>
-      <div class="row">
+      <div v-if="loading" class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+      <div v-else class="row">
         <div class="col-4">
           <div class="card h-100">
             <div class="card-body">
