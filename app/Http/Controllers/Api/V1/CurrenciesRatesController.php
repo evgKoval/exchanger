@@ -14,11 +14,18 @@ class CurrenciesRatesController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index(CurrencyInterface $currencyInterface)
+	public function index()
 	{
 	    $coinbase = new Coinbase();
 
-	    return $coinbase->getPrice('BTC', 'UAH');
+	    $rates = [];
+
+	    $rates[] = $coinbase->getPrice('BTC', 'UAH');
+	    $rates[] = $coinbase->getPrice('ETH', 'UAH');
+	    $rates[] = $coinbase->getPrice('BCH', 'UAH');
+	    $rates[] = $coinbase->getPrice('LTC', 'UAH');
+
+	    return $rates;
 	}
 
 	/**
