@@ -39,12 +39,14 @@ class CurrenciesController extends Controller
     {
         $request->validated();
 
-        $currencyRepository->store([
+        $data = $currencyRepository->store([
             'name' => $request->name,
             'currency' => $request->currency,
             'logo' => $request->logo,
             'reserves' => $request->reserves
         ]);
+
+        return response($data, 201)->header('Content-Type', 'application/json');
     }
 
     /**
@@ -78,12 +80,14 @@ class CurrenciesController extends Controller
      */
     public function update(CurrencyRepository $currencyRepository, Request $request, $id)
     {
-        $currencyRepository->update([
+        $data = $currencyRepository->update([
             'name' => $request->name,
             'currency' => $request->currency,
             'logo' => $request->logo,
             'reserves' => $request->reserves
         ], $id);
+
+        return response($data, 200)->header('Content-Type', 'application/json');
     }
 
     /**
@@ -94,6 +98,8 @@ class CurrenciesController extends Controller
      */
     public function destroy(CurrencyRepository $currencyRepository, $id)
     {
-        $currencyRepository->destroy($id);
+        $data = $currencyRepository->destroy($id);
+
+        return response($data, 200)->header('Content-Type', 'application/json');
     }
 }

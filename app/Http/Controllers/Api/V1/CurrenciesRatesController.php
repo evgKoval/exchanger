@@ -17,15 +17,15 @@ class CurrenciesRatesController extends Controller
 	public function index()
 	{
 	    $coinbase = new Coinbase();
+	    // $rates = [];
 
-	    $rates = [];
+	    // $rates[] = $coinbase->getPrice('BTC', 'UAH');
+	    // $rates[] = $coinbase->getPrice('ETH', 'UAH');
+	    // $rates[] = $coinbase->getPrice('BCH', 'UAH');
+	    // $rates[] = $coinbase->getPrice('LTC', 'UAH');
+	    return $coinbase->user();
 
-	    $rates[] = $coinbase->getPrice('BTC', 'UAH');
-	    $rates[] = $coinbase->getPrice('ETH', 'UAH');
-	    $rates[] = $coinbase->getPrice('BCH', 'UAH');
-	    $rates[] = $coinbase->getPrice('LTC', 'UAH');
-
-	    return $rates;
+	    //return $rates;
 	}
 
 	/**
@@ -46,7 +46,9 @@ class CurrenciesRatesController extends Controller
 	 */
 	public function store(Request $request)
 	{
-	    //
+	    $coinbase = new Coinbase();
+
+	    return $coinbase->buy($request->all());
 	}
 
 	/**
