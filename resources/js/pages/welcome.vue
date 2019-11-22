@@ -338,20 +338,48 @@ export default {
       }
 
       if(Object.values(this.errors).some(a => a == false) && !(this.toTake > this.chosenTake.reserves)) {
-        axios.post('/api/v1/charge-create', {
-          email: this.form.email,
-          walletFrom: this.chosenGive.id,
-          walletTo: this.chosenTake.id,
-          give: this.give,
-          take: this.give * this.rates[this.chosenGive.currency][this.chosenTake.currency]
+        axios.post('/api/v1/currencies-all', {
+          amount: this.give,
+          currency: this.chosenTake.currency
+          // email: this.form.email,
+          // walletFrom: this.chosenGive.id,
+          // walletTo: this.chosenTake.id,
+          // give: this.give,
+          // take: this.give * this.rates[this.chosenGive.currency][this.chosenTake.currency]
         }).then((res) => {
           console.log(res);
         });
+
+        // axios.post('https://api-public.sandbox.pro.coinbase.com/orders', {
+        //   'size': this.give,
+        //   'price': this.give,
+        //   'side': 'buy',
+        //   'product_id': `${this.chosenTake.currency}-${this.chosenGive.currency}`
+        // }, {
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'X-CC-Api-Key': '+qB+A31DHOK4FLw0lrzhOsCzEaeXuuBTuBUXJRoEXfJVexP3ZI2geQoyZIyrBTPuOlWMkdpQiwW05LfPytyPIw==',
+        //     'X-CC-Version': '2018-03-22'
+        //   }
+        // })
       }
     }
   },
 
   async created() {
+    // axios.get('https://api.coinbase.com/v2/accounts', { 
+    //   headers: { 
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer 6966ac79d08c4903b1bf93ad4753f188ee1c3e6b5f32228f62a1c3fdb7accc17'
+    //   } 
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+
     await this.$store.dispatch('currencies/fetchCurrencies');
 
     await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=USD')
@@ -389,6 +417,21 @@ export default {
         this.rates[response.data.data.currency] = response.data.data.rates
         this.loading = false;
       })
+
+      // var config = {
+      //     headers: {'Authorization': "Bearer ab93219cd6577cdb767cd2afb966e53deb861c7b4deadfdaae0f7b6bff0f39fa"}
+      // };
+
+      // var bodyParameters = {}
+
+      // axios.get( 
+      //   'https://api.coinbase.com/v2/user',
+      //   { headers: { Authorization: "Bearer ab93219cd6577cdb767cd2afb966e53deb861c7b4deadfdaae0f7b6bff0f39fa" } }
+      // ).then((response) => {
+      //   console.log(response)
+      // }).catch((error) => {
+      //   console.log(error)
+      // });
   }
 }
 </script>

@@ -24,7 +24,7 @@ class StoreCurrency extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:currencies',
+            'name' => 'required',
             'currency' => 'required',
             'logo' => 'required',
             'reserves' => 'required'

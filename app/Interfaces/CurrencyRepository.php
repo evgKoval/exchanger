@@ -14,7 +14,7 @@ final class CurrencyRepository implements CurrencyInterface
 
     public function store($params)
     {
-        Currency::create($params);
+        return Currency::create($params);
     }
 
     public function show($id)
@@ -25,17 +25,18 @@ final class CurrencyRepository implements CurrencyInterface
     public function update($params, $id)
     {
         $currency = Currency::find($id);
-
         $currency->name = $params['name'];
         $currency->currency = $params['currency'];
         $currency->logo = $params['logo'];
         $currency->reserves = $params['reserves'];
 
         $currency->save();
+
+        return $currency;
     }
 
     public function destroy($id)
     {
-        Currency::destroy($id);
+        return Currency::destroy($id);
     }
 }
